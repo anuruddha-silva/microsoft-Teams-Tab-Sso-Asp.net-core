@@ -1,4 +1,4 @@
-# TeamsssoBackend
+# Microsoft teams tab application for enable sso and exchange client token tom server token, asp.net core
 This is the sample project asp.net core enable sso microsoft teams tab app and exchange client token to access  token the backend project
 
 following this video https://www.youtube.com/watch?v=kruUnaZgQaY&t=1826s and https://www.youtube.com/watch?v=SaBbfVgqZHc&t=1931s
