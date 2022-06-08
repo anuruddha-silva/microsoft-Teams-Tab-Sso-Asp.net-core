@@ -1,0 +1,62 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auth Start Page</title>
+</head>
+<body>
+    
+    <p>
+        Authorizing...
+    </p>
+
+    <script src="https://statics.teams.cdn.office.net/sdk/v1.8.0/js/MicrosoftTeams.min.js" integrity="sha384-5ilKjPffKMvf1YelNqWjOhy5WJC9rkHpgF9pASMY/eRFlb619wOrCGMVIg/a/71o" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://alcdn.msauth.net/browser/2.13.1/js/msal-browser.min.js" integrity="sha384-2Vr9MyareT7qv+wLp1zBt78ZWB4aljfCTMUrml3/cxm0W81ahmDOC6uyNmmn0Vrc" crossorigin="anonymous"></script>
+
+    <script>
+
+        (function () {
+            'use strict';
+
+            microsoftTeams.initialize(window);
+
+            const msalConfig = {
+                auth: {
+                    clientId: "@Configuration["AzureAd:ClientId"]",
+                    authority: "https://login.microsoftonline.com/common",
+                    redirectUri: window.location.origin + "@Configuration["AzureAd:RedirectUriRelativePath"]"
+                },
+                cache: {
+                    cacheLocation: "sessionStorage", 
+                    storeAuthStateInCookie: false, 
+                }
+            };
+
+            const msalClient = new msal.PublicClientApplication(msalConfig);
+
+           
+            microsoftTeams.getContext((context) => {
+                msalClient.handleRedirectPromise().then((tokenResponse) => {
+                    if (tokenResponse) {
+                        microsoftTeams.authentication.notifySuccess(tokenResponse);
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                    microsoftTeams.authentication.notifyFailure("Unexpected failure");
+                });
+
+                msalClient.loginRedirect({
+                    scopes: ["User.Read"],
+                    loginHint: context.loginHint
+                });
+            });
+        })();
+
+    </script>
+</body>
+</html>

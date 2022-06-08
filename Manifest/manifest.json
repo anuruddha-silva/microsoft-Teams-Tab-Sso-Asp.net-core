@@ -1,0 +1,53 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.5/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.5",
+    "version": "1.0.0",
+    "id": "5e3ce6c0-2b1f-4285-8d4b-75ee78787346",
+    "packageName": "TeamsTabSSO",
+    "developer": {
+        "name": "Anuruddha Silva",
+        "websiteUrl": "https://teamsbackendappication.azurewebsites.net/",
+        "privacyUrl": "https://teamsbackendappication.azurewebsites.net/",
+        "termsOfUseUrl": "https://teamsbackendappication.azurewebsites.net/"
+    },
+    "name": {
+        "short": "Teams Token Exchange Tab",
+        "full": "Teams Token Exchange Tab"
+    },
+    "description": {
+        "short": "Teams Token Exchange Tab",
+        "full": "This is sample application for understand how to work with client side teams token exchange with aceess token Asp.net backend application"
+    },
+    "icons": {
+        "outline": "contoso20x20.png",
+        "color": "contoso96x96.png"
+    },
+    "accentColor": "#60A18E",
+    "staticTabs": [{
+        "entityId": "com.contoso.teamsssosample.static",
+        "name": "Token Tab",
+        "contentUrl": "https://teamsbackendappication.azurewebsites.net/ssoTeamsApp",
+        "scopes": [
+            "personal"
+        ]
+    }],
+    "configurableTabs": [{
+        "configurationUrl": "https://teamsbackendappication.azurewebsites.net/configure",
+        "canUpdateConfiguration": true,
+        "scopes": [
+            "team"
+        ]
+    }],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+  "validDomains": [
+    "azurewebsites.net"
+  ],
+    "webApplicationInfo": {
+        "id": "3bb02b9d-1552-4568-bb64-55c08a8207b3",
+        "resource": "api://teamsbackendappication.azurewebsites.net/3bb02b9d-1552-4568-bb64-55c08a8207b3"  
+        
+    }
+}
